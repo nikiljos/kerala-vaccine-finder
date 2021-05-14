@@ -1,0 +1,2 @@
+# kerala-vaccine-finder
+ 
