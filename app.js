@@ -1,11 +1,29 @@
 const express = require("express");
 const axios = require('axios');
-
+const bodyParser = require('body-parser')
 const app = express();
+
+var centersArray = new Array();
+
+var districtList = [{ "district_id": 301, "district_name": "Alappuzha" }, { "district_id": 307, "district_name": "Ernakulam" }, { "district_id": 306, "district_name": "Idukki" }, { "district_id": 297, "district_name": "Kannur" }, { "district_id": 295, "district_name": "Kasaragod" }, { "district_id": 298, "district_name": "Kollam" }, { "district_id": 304, "district_name": "Kottayam" }, { "district_id": 305, "district_name": "Kozhikode" }, { "district_id": 302, "district_name": "Malappuram" }, { "district_id": 308, "district_name": "Palakkad" }, { "district_id": 300, "district_name": "Pathanamthitta" }, { "district_id": 296, "district_name": "Thiruvananthapuram" }, { "district_id": 303, "district_name": "Thrissur" }, { "district_id": 299, "district_name": "Wayanad" }]
+
+app.use(bodyParser.urlencoded({ extended: true }))
+
+app.use(express.static("public"))
 
 app.set("view engine", "ejs")
 app.get("/", function(req, res) {
-    districtID = 300
+    res.render('index', { centersArray: centersArray, districtList: districtList })
+    centersArray = []
+})
+
+app.post("/", function(req, res) {
+    district = req.body.district
+
+
+
+    console.log(district)
+
 
     var result = ""
 
@@ -13,7 +31,7 @@ app.get("/", function(req, res) {
 
 
 
-    var centersArray = new Array();
+
 
 
     let date_ob = new Date();
@@ -30,7 +48,7 @@ app.get("/", function(req, res) {
 
     var formattedDate = date + "-" + month + "-" + year;
 
-    url = "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByDistrict?district_id=" + districtID + "&date=" + formattedDate
+    url = "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByDistrict?district_id=" + district + "&date=" + formattedDate
 
     axios.get(url, {
             headers: {
@@ -100,30 +118,17 @@ app.get("/", function(req, res) {
 
             // console.log("hi");
 
-            if (tCap > 0) {
+            // if (tCap > 0) {
 
-                // Here array.values() function is called.
-                // var iterator = centersArray.values();
+            res.redirect('/')
 
-                // // Here all the elements of the array is being printed.
-                // for (let elements of iterator) {
-                //     result = result.concat(elements + "<br>");
-
-                // }
-                // console.log(result)
-                res.render('index', { centersArray: centersArray })
-
-            }
+            // }
 
             // console.log(result)
             // resultData = result
             // console.log(resultData)
 
         })
-})
-
-app.post("/", function(req, res) {
-    district = req.body.district
 })
 
 
