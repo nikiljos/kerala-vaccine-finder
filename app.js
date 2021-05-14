@@ -2,17 +2,12 @@ const express = require("express");
 const axios = require('axios');
 
 const app = express();
+
+app.set("view engine", "ejs")
 app.get("/", function(req, res) {
-    result = getData(300)
-    res.send(result)
-})
+    districtID = 300
 
-
-function getData(district) {
-
-    districtID = district
-
-    var resultData = ""
+    var result = ""
 
     var tCap = 0
 
@@ -56,7 +51,7 @@ function getData(district) {
 
             // console.log(x)
 
-            centersArray.push("\n__Kottayam__")
+            centersArray.push(cowinData.centers[0].district_name)
 
             var availableCap = 0;
 
@@ -87,7 +82,7 @@ function getData(district) {
 
             // console.log("Kot?tayam")
 
-            centersArray.push("\nAvailble slots: " + availableCap)
+            centersArray.push("Availble slots: " + availableCap)
 
             centersArray.push("Total centres listed: " + x)
 
@@ -108,15 +103,15 @@ function getData(district) {
             if (tCap > 0) {
 
                 // Here array.values() function is called.
-                var iterator = centersArray.values();
+                // var iterator = centersArray.values();
 
-                // Here all the elements of the array is being printed.
-                for (let elements of iterator) {
-                    result = result.concat(elements + "\n");
+                // // Here all the elements of the array is being printed.
+                // for (let elements of iterator) {
+                //     result = result.concat(elements + "<br>");
 
-                }
+                // }
                 // console.log(result)
-                return result
+                res.render('index', { centersArray: centersArray })
 
             }
 
@@ -125,11 +120,14 @@ function getData(district) {
             // console.log(resultData)
 
         })
+})
 
-    console.log(resultData)
+app.post("/", function(req, res) {
+    district = req.body.district
+})
 
-    return resultData
-}
+
+
 
 
 
