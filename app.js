@@ -12,11 +12,13 @@ app.use(express.static('public'))
 app.use(bodyParser.urlencoded({ extended: true }))
 
 var cowinData = ""
+var resError = 0;
 
 app.set("view engine", "ejs")
 app.get("/", function(req, res) {
-    res.render('index', { districtList: districtList, cowinData: cowinData, x: x })
+    res.render('index', { districtList: districtList, cowinData: cowinData, x: x, resError: resError })
     cowinData = ""
+    resError = 0
 })
 
 app.post("/", function(req, res) {
@@ -90,7 +92,9 @@ app.post("/", function(req, res) {
         .catch(function(error) {
             // handle error
             // console.log(error);
-            console.log(error)
+            console.log("error in response")
+            resError = 1;
+
         })
         .then(function() {
 

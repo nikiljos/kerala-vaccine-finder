@@ -42,50 +42,53 @@
                     <% var availableCap=0 %>
 
                         <div class="row">
+                            <% if(resError==1){ %>
+                                <div>Sorry, Seems like some error occured. Pls try again</div>
+                                <% } %>
 
-                            <% if(cowinData!=""){ %>
-
-
-
-                                <% for (m = 0; m < x; m++) { %>
-
-
-                                    <% y = cowinData.centers[m].sessions.length %>
-
-                                        <% for (n = 0; n < y; n++) { %>
-
-                                            <% var cap = cowinData.centers[m].sessions[n].available_capacity; %>
-                                                <% availableCap = availableCap + cap %>
-
-                                                    <%  if (cap > 0) { %>
-                                                        <div class="col-md-4">
-                                                            <div class="card mb-4 box-shadow">
-
-                                                                <div class="card-body">
-                                                                    <p class="card-text">
-                                                                        <b>Center:</b>
-                                                                        <%= cowinData.centers[m].name %> <br> <b>Vaccine Name:</b>
-                                                                            <%= cowinData.centers[m].sessions[n].vaccine %> <br> <b>Date:</b>
-                                                                                <%= cowinData.centers[m].sessions[n].date %> <br> <b>Slots Available:</b>
-                                                                                    <%= cowinData.centers[m].sessions[n].available_capacity %><br> <b>Mininum Age:</b>
-                                                                                        <%= cowinData.centers[m].sessions[n].min_age_limit %><br>
-
-
-                                                                    </p>
-
-                                                                    <small class="text-muted"><a href="https://selfregistration.cowin.gov.in/">Book your slot</a></small></div>
-                                                            </div>
-                                                        </div>
-                                                        <% } %>
+                                    <% if(cowinData!=""){ %>
 
 
 
+                                        <% for (m = 0; m < x; m++) { %>
 
 
+                                            <% y = cowinData.centers[m].sessions.length %>
+
+                                                <% for (n = 0; n < y; n++) { %>
+
+                                                    <% var cap = cowinData.centers[m].sessions[n].available_capacity; %>
+                                                        <% availableCap = availableCap + cap %>
+
+                                                            <%  if (cap > 0) { %>
+                                                                <div class="col-md-4">
+                                                                    <div class="card mb-4 box-shadow">
+
+                                                                        <div class="card-body">
+                                                                            <p class="card-text">
+                                                                                <b>Center:</b>
+                                                                                <%= cowinData.centers[m].name %> <br> <b>Vaccine Name:</b>
+                                                                                    <%= cowinData.centers[m].sessions[n].vaccine %> <br> <b>Date:</b>
+                                                                                        <%= cowinData.centers[m].sessions[n].date %> <br> <b>Slots Available:</b>
+                                                                                            <%= cowinData.centers[m].sessions[n].available_capacity %><br> <b>Mininum Age:</b>
+                                                                                                <%= cowinData.centers[m].sessions[n].min_age_limit %><br>
 
 
-                                                            <% } %>
+                                                                            </p>
+
+                                                                            <small class="text-muted"><a href="https://selfregistration.cowin.gov.in/">Book your slot</a></small></div>
+                                                                    </div>
+                                                                </div>
                                                                 <% } %>
+
+
+
+
+
+
+
+                                                                    <% } %>
+                                                                        <% } %>
                         </div>
                         <br><br>
                         <div>Available Slots:
