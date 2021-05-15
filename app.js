@@ -90,7 +90,7 @@ app.post("/", function(req, res) {
         .catch(function(error) {
             // handle error
             // console.log(error);
-            console.log("error in district response")
+            console.log(error)
         })
         .then(function() {
 
