@@ -14,11 +14,14 @@ app.use(bodyParser.urlencoded({ extended: true }))
 var cowinData = ""
 var resError = 0;
 
+var dName = ""
+
 app.set("view engine", "ejs")
 app.get("/", function(req, res) {
-    res.render('index', { districtList: districtList, cowinData: cowinData, x: x, resError: resError })
+    res.render('index', { districtList: districtList, cowinData: cowinData, x: x, resError: resError, dName: dName })
     cowinData = ""
     resError = 0
+    dName = ""
 })
 
 app.post("/", function(req, res) {
