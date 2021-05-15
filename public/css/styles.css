@@ -2,12 +2,3 @@
     margin-top: 10 px;
     left: 10 px;
 }
-
-.main {
-    position: absolute;
-    margin: auto;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    border-radius: 25px;
-}

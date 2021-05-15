@@ -6,17 +6,17 @@ const app = express();
 const port = process.env.PORT || 5000
 
 var centersArray = new Array();
-
+var x = 0;
 var districtList = [{ "district_id": 301, "district_name": "Alappuzha" }, { "district_id": 307, "district_name": "Ernakulam" }, { "district_id": 306, "district_name": "Idukki" }, { "district_id": 297, "district_name": "Kannur" }, { "district_id": 295, "district_name": "Kasaragod" }, { "district_id": 298, "district_name": "Kollam" }, { "district_id": 304, "district_name": "Kottayam" }, { "district_id": 305, "district_name": "Kozhikode" }, { "district_id": 302, "district_name": "Malappuram" }, { "district_id": 308, "district_name": "Palakkad" }, { "district_id": 300, "district_name": "Pathanamthitta" }, { "district_id": 296, "district_name": "Thiruvananthapuram" }, { "district_id": 303, "district_name": "Thrissur" }, { "district_id": 299, "district_name": "Wayanad" }]
-
+app.use(express.static('public'))
 app.use(bodyParser.urlencoded({ extended: true }))
 
-app.use(express.static("public"))
+var cowinData = ""
 
 app.set("view engine", "ejs")
 app.get("/", function(req, res) {
-    res.render('index', { centersArray: centersArray, districtList: districtList })
-    centersArray = []
+    res.render('index', { districtList: districtList, cowinData: cowinData, x: x })
+    cowinData = ""
 })
 
 app.post("/", function(req, res) {
@@ -27,7 +27,7 @@ app.post("/", function(req, res) {
     console.log(district)
 
 
-    var result = ""
+    // var result = ""
 
     var tCap = 0
 
@@ -59,7 +59,7 @@ app.post("/", function(req, res) {
         }, )
         .then(function(response) {
             cowinData = response.data
-
+            x = length(cowinData.centers)
 
             function length(cowinData) {
                 return Object.keys(cowinData).length;
@@ -67,38 +67,15 @@ app.post("/", function(req, res) {
 
             // x = length(cowinData.centres);
 
-            x = length(cowinData.centers)
 
             // console.log(x)
 
-            centersArray.push(cowinData.centers[0].district_name)
+            dName = cowinData.centers[0].district_name
 
             var availableCap = 0;
 
 
-            for (m = 0; m < x; m++) {
 
-                // console.log(url);
-
-                y = length(cowinData.centers[m].sessions)
-
-                // console.log(y)
-                for (n = 0; n < y; n++) {
-
-                    var cap = cowinData.centers[m].sessions[n].available_capacity;
-                    availableCap = availableCap + cap
-
-                    if (cap > 0) {
-                        // console.log("inside")
-                        // cap.toString();
-                        var cName = cowinData.centers[m].name
-                        var vName = cowinData.centers[m].sessions[n].vaccine
-                        var vDate = cowinData.centers[m].sessions[n].date
-                        centersArray.push(cName + " - " + cap + " - " + vName + " - " + vDate)
-                    }
-
-                }
-            }
 
             // console.log("Kot?tayam")
 
