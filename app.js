@@ -61,6 +61,10 @@ app.post("/", function(req, res) {
             headers: {
                 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:89.0) Gecko/20100101 Firefox/89.0',
             },
+            proxy: {
+                host: '13.235.248.19',
+                port: 3128,
+            },
         }, )
         .then(function(response) {
             cowinData = response.data
