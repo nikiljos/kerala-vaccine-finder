@@ -20,3 +20,8 @@ I learned a lot about EJS, Express and routing sites. Also I got to know a lot a
 
 ## What's next for Kerala Vaccine Finder
 A telegram bot that sends alerts every 10 minutes about the available vaccination slots
+
+
+### In Short
+A simple project built for
+![Neighbourhood Hacks by MLH](https://challengepost-s3-challengepost.netdna-ssl.com/photos/production/challenge_photos/001/498/639/datas/full_width.png)
