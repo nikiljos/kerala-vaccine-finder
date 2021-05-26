@@ -62,8 +62,8 @@ app.post("/", function(req, res) {
                 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:89.0) Gecko/20100101 Firefox/89.0',
             },
             proxy: {
-                host: '117.204.254.122',
-                port: 8080,
+                host: '202.133.49.204',
+                port: 83,
             },
         }, )
         .then(function(response) {
