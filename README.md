@@ -10,7 +10,7 @@ The website I built uses the government CoWin APIs to fetch the details of vacci
 The site is built using NodeJS with frameworks like express, axios, ejs etc. Uses CoWin API to get the data.
 
 ## Challenges I ran into
-CoWin API had some restrictions on server locations and type. This was overcame by specifying compatible headers in API GET request.
+CoWin API had some restrictions on server locations. So the app will not run properly in heroku as it's servers are not in India
 
 ## Accomplishments that I'm proud of
 The site is running without errors in development server
